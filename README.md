@@ -46,6 +46,6 @@ Każda z tych usług powinna udostęniać port, a klient dodatkowo volume, na kt
 
 ## Dyskusja i przekazanie projektu
 
-Dyskusja ogólna na temat projektu może odbywać się w tym repozytorium
+Dyskusja ogólna na temat projektu może odbywać się w tym repozytorium [pod tym linkiem](https://github.com/goluda/SEBN-MES-StratProject-Test1/issues/1) 
 
 Każdy z uczestników projekt stworzy swoje własne repozytorium dla swojego kodu i przekaże link do sprawdzenia kodu
