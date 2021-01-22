@@ -6,7 +6,7 @@ Ten projekt jest przeznaczony dla studentów AJP, którzy biorą udział w proje
 
 ![](zadanie1.drawio.png)
 
-## Krok-1 - Budowa API
+### Krok-1 - Budowa API
 
 Ten krok powinien składać się z dwóch elementów:
 
@@ -27,7 +27,7 @@ System posługuje się obiektem **Message** Który ma następujące właściowś
     - Data - data utworzenia wiadomości, typu DateTime, nadawana po stronie serwera w momencie utworzenia waidomości
     - Tresc - treść wiadomości.
 
-## Krok 2 - Budowa klienta subkrybującego wiadomości MQTT.
+### Krok 2 - Budowa klienta subkrybującego wiadomości MQTT.
 
 W tym kroku dodajemy instancję brokera MQTT (mosquito na przykład) i w czasie Wykonania operacji API przesyła obiekt **Message** do brokera MQTT do topicku o nazwie **NewMessages**.
 
@@ -35,7 +35,7 @@ Następnie budowany jest klient, który subskrybuje topick **NewMessages** i gdy
 
 Klient powinien byś aplikacją WPF lub Xamarin, a subskrypcja wiadomości powinna odbywać się w oddzielnym od interfejsu wątku, tak aby cały czas apliakcja była responsywna dla użytkownika.
 
-## Krok 3 - Budowa kontenera Docker.
+### Krok 3 - Budowa kontenera Docker.
 
 W tym kroku dodajemy definicję pliku Dockerfile dla API i Klienta, następnie tworzymy plik docker-compose, który zbuduje i uruchomi następujące usługi
 - api
@@ -43,3 +43,9 @@ W tym kroku dodajemy definicję pliku Dockerfile dla API i Klienta, następnie t
 - serwer mosquito
 
 Każda z tych usług powinna udostęniać port, a klient dodatkowo volume, na którym będzie zapisywany plik z wiadomościami, tak aby nie zniknęły pomiędzy kolejnymi uruchomieniami.
+
+## Dyskusja i przekazanie projektu
+
+Dyskusja ogólna na temat projektu może odbywać się w tym repozytorium
+
+Każdy z uczestników projekt stworzy swoje własne repozytorium dla swojego kodu i przekaże link do sprawdzenia kodu
