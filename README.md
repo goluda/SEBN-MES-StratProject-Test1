@@ -23,9 +23,9 @@ Ten krok powinien składać się z dwóch elementów:
    2. Pokaż wiadomości - pokazuje wszystkie wiadomości w formie tabeli w porządku malejącym od najstarszej do najświeższej. Dodatkowo Powinna być możliwość wyszukania wiadomości o określonej treści.
 
 System posługuje się obiektem **Message** Który ma następujące właściowści:
-    - ID - tekstowa reprezentacja unikalnej wartościu typu GUID,
-    - Data - data utworzenia wiadomości, typu DateTime, nadawana po stronie serwera w momencie utworzenia waidomości
-    - Tresc - treść wiadomości.
+- ID - tekstowa reprezentacja unikalnej wartościu typu GUID,
+- Data - data utworzenia wiadomości, typu DateTime, nadawana po stronie serwera w momencie utworzenia waidomości
+- Tresc - treść wiadomości.
 
 ### Krok 2 - Budowa klienta subkrybującego wiadomości MQTT.
 
