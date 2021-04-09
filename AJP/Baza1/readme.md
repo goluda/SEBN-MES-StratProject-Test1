@@ -9,3 +9,11 @@ usuniecie
 ```
 docker compose -f ./comopse.yaml down
 ```
+
+
+### w folderze BazaTestLudziki
+dodajemy pakiet mysql
+
+```
+dotnet add package MySql.EntityFrameworkCore
+```
