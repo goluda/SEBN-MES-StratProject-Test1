@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace BazaTestLudziki
@@ -15,6 +17,8 @@ namespace BazaTestLudziki
     }
     public class ludziki
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public string imie { get; set; }
         public string nazisko { get; set; }
