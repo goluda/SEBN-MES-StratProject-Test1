@@ -28,6 +28,7 @@ namespace calc
         {
 
             services.AddControllers();
+            services.AddSingleton<Controllers.Memory>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "calc", Version = "v1" });
