@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Materialy.Controllers
 {
     [ApiController]
-
     public class MaterialyController : ControllerBase
     {
+
 
         [HttpGet]
         [Route("api/materialy")]
@@ -20,6 +21,19 @@ namespace Materialy.Controllers
             {
                 return db.Material.OrderBy(_ => _.MaterialNo).ToList();
             }
+        }
+        [HttpGet]
+        [Route("api/materialy/{MaterialNo}")]
+        public CompleteMaterial Materialy([FromRoute] string MaterialNo)
+        {
+            var cm = new CompleteMaterial();
+            using (var db = new MyContext())
+            {
+                cm.Material = db.Material.Where(_ => _.MaterialNo == MaterialNo).FirstOrDefault();
+            }
+            cm.Routing = new RoutingController().RoutingForMaterial(MaterialNo);
+            cm.Bom = new BomController().BomForMaterial(MaterialNo);
+            return cm;
         }
         [HttpGet]
         [Route("api/materialy/szukaj")]
@@ -46,5 +60,46 @@ namespace Materialy.Controllers
                             .ToList();
             }
         }
+
+        public class CompleteMaterial
+        {
+            public Material Material { get; set; }
+            public List<Bom> Bom { get; set; }
+            public List<Routing> Routing { get; set; }
+
+        }
+    }
+
+    [ApiController]
+    public class BomController : ControllerBase
+    {
+
+        [HttpGet]
+        [Route("api/Bom/{MaterialNo}")]
+        public List<Bom> BomForMaterial([FromRoute] string MaterialNo)
+        {
+            using (var db = new MyContext())
+            {
+                return db.Bom
+                        .Include(_ => _.material)
+                        .Where(_ => _.MaterialNo == MaterialNo)
+                        .ToList();
+            }
+        }
+    }
+    [ApiController]
+    public class RoutingController : ControllerBase
+    {
+
+        [HttpGet]
+        [Route("api/Routing/{MaterialNo}")]
+        public List<Routing> RoutingForMaterial([FromRoute] string MaterialNo)
+        {
+            using (var db = new MyContext())
+            {
+                return db.Routing.Where(_ => _.MaterialNo == MaterialNo).ToList();
+            }
+        }
+
     }
 }

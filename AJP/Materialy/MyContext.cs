@@ -25,6 +25,8 @@ namespace Materialy
         public string MaterialNo { get; set; }
         public string ComponentNo { get; set; }
         public int Qty { get; set; }
+        [ForeignKey("ComponentNo")] public Material material { get; set; }
+
     }
 
     public class Routing
