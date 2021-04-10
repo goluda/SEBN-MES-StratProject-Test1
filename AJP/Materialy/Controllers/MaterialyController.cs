@@ -33,7 +33,27 @@ namespace Materialy.Controllers
             }
             cm.Routing = new RoutingController().RoutingForMaterial(MaterialNo);
             cm.Bom = new BomController().BomForMaterial(MaterialNo);
+            CalculateSum(cm);
             return cm;
+        }
+
+        private void CalculateSum(CompleteMaterial cm)
+        {
+            // cm.TotalTime = 0;
+            // foreach (var r in cm.Routing)
+            // {
+            //     cm.TotalTime += r.Time;
+            // }
+
+            // cm.TotalPrice = 0;
+            // foreach (var r in cm.Bom)
+            // {
+            //     cm.TotalPrice += r.Qty * r.material.Price;
+            // }
+
+            cm.TotalTime = cm.Routing.Sum(_ => _.Time);
+            cm.TotalPrice = cm.Bom.Sum(_ => _.Qty * _.material.Price);
+
         }
         [HttpGet]
         [Route("api/materialy/szukaj")]
@@ -64,8 +84,11 @@ namespace Materialy.Controllers
         public class CompleteMaterial
         {
             public Material Material { get; set; }
+            public int TotalTime { get; set; }
+            public int TotalPrice { get; set; }
             public List<Bom> Bom { get; set; }
             public List<Routing> Routing { get; set; }
+
 
         }
     }
