@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Materialy.Controllers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Materialy
@@ -25,8 +26,11 @@ namespace Materialy
         public string MaterialNo { get; set; }
         public string ComponentNo { get; set; }
         public int Qty { get; set; }
-        [ForeignKey("ComponentNo")] public Material material { get; set; }
+        [ForeignKey("ComponentNo")]
+        public Material material { get; set; }
 
+        [NotMapped]
+        public MaterialyController.CompleteMaterial SubMaterial { get; set; }
     }
 
     public class Routing

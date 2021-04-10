@@ -34,7 +34,17 @@ namespace Materialy.Controllers
             cm.Routing = new RoutingController().RoutingForMaterial(MaterialNo);
             cm.Bom = new BomController().BomForMaterial(MaterialNo);
             CalculateSum(cm);
+            CalculateSubParts(cm);
             return cm;
+        }
+
+        private void CalculateSubParts(CompleteMaterial cm)
+        {
+            foreach (var b in cm.Bom)
+            {
+                System.Console.WriteLine($"Szukamy danych dla komponentu {b.ComponentNo}");
+                b.SubMaterial = this.Materialy(b.ComponentNo);
+            }
         }
 
         private void CalculateSum(CompleteMaterial cm)
