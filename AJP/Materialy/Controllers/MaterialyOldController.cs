@@ -14,7 +14,7 @@ namespace Materialy.Controllers
 
 
         [HttpGet]
-        [Route("api/materialy")]
+        [Route("api/MaterialyOld")]
         public List<Material> Materialy()
         {
             using (var db = new MyContext())
@@ -23,7 +23,7 @@ namespace Materialy.Controllers
             }
         }
         [HttpGet]
-        [Route("api/materialy/{MaterialNo}")]
+        [Route("api/MaterialyOld/{MaterialNo}")]
         public CompleteMaterial Materialy([FromRoute] string MaterialNo)
         {
             var cm = new CompleteMaterial();
@@ -31,8 +31,8 @@ namespace Materialy.Controllers
             {
                 cm.Material = db.Material.Where(_ => _.MaterialNo == MaterialNo).FirstOrDefault();
             }
-            cm.Routing = new RoutingController().RoutingForMaterial(MaterialNo);
-            cm.Bom = new BomController().BomForMaterial(MaterialNo);
+            cm.Routing = new RoutingOldController().RoutingForMaterial(MaterialNo);
+            cm.Bom = new BomOldController().BomForMaterial(MaterialNo);
             CalculateSum(cm);
             CalculateSubParts(cm);
             return cm;
@@ -66,7 +66,7 @@ namespace Materialy.Controllers
 
         }
         [HttpGet]
-        [Route("api/materialy/szukaj")]
+        [Route("api/MaterialyOld/szukaj")]
         public List<Material> MaterialySzukaj([FromQuery] string szukane)
         {
             // var ret = new List<Material>();
@@ -104,11 +104,11 @@ namespace Materialy.Controllers
     }
 
     [ApiController]
-    public class BomController : ControllerBase
+    public class BomOldController : ControllerBase
     {
 
         [HttpGet]
-        [Route("api/Bom/{MaterialNo}")]
+        [Route("api/BomOld/{MaterialNo}")]
         public List<Bom> BomForMaterial([FromRoute] string MaterialNo)
         {
             using (var db = new MyContext())
@@ -121,11 +121,11 @@ namespace Materialy.Controllers
         }
     }
     [ApiController]
-    public class RoutingController : ControllerBase
+    public class RoutingOldController : ControllerBase
     {
 
         [HttpGet]
-        [Route("api/Routing/{MaterialNo}")]
+        [Route("api/RoutingOld/{MaterialNo}")]
         public List<Routing> RoutingForMaterial([FromRoute] string MaterialNo)
         {
             using (var db = new MyContext())
