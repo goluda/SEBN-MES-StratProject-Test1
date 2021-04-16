@@ -6,3 +6,13 @@
 }
 
 material is: <b>@MaterialNo</b>
+
+@if (material != null)
+{
+    @foreach (var item in material.Bom)
+    {
+        <p>- @item.ComponentNo , @item.Qty</p>
+    }
+
+
+}
