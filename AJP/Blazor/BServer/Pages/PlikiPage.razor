@@ -1,0 +1,37 @@
+@page "/pliki"
+
+<h1>Tutaj będą pliki</h1>
+
+<button class="btn btn-primary" @onclick="PobierzPliki">Pobierz pliki</button>
+
+tutaj będzie tekst <b>@tekst</b>
+<button class="btn btn-primary" @onclick='()=>ZmienB(DateTime.Now.ToString())'>Zmien b</button>
+
+
+
+<ul>
+    @foreach (var plik in MojePliki)
+    {
+        <li>@plik</li>
+    }
+</ul>
+
+@code{
+    List<string> MojePliki = new List<string>();
+    string tekst = "";
+    int licznik = 0;
+    void PobierzPliki()
+    {
+
+        MojePliki = new System.IO.DirectoryInfo("/Users/pawegoluda/Downloads")
+        .GetFiles()
+        .OrderBy(_ => _.Name)
+        .Select(_ => _.Name)
+        .ToList();
+    }
+    void ZmienB(string tekst)
+    {
+        this.licznik += 1;
+        this.tekst = $"tekst: {tekst} a licznik: {licznik}";
+    }
+}
