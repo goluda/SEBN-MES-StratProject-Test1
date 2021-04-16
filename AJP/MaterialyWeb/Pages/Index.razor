@@ -1,0 +1,24 @@
+﻿@page "/"
+
+<h1>Lista materialow</h1>
+
+@if (materials != null)
+{
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Materail number</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <Virtualize Context="m" Items="materials">
+            <MaterialRow m="@m"></MaterialRow>
+        </Virtualize>
+    </tbody>
+</table>
+}
+else
+{
+    <p>Loading data, please wait a second...</p>
+}

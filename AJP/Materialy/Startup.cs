@@ -33,6 +33,7 @@ namespace Materialy
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Materialy", Version = "v1" });
             });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +51,8 @@ namespace Materialy
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,0 +1,13 @@
+@code{
+    [Parameter]
+    public API.Material m { get; set; }
+
+}
+<tr>
+    <td>
+        <a href="/material/@m.MaterialNo">
+            @m.MaterialNo
+        </a>
+    </td>
+    <td>@m.Name</td>
+</tr>
